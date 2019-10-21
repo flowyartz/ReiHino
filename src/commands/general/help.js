@@ -1,21 +1,24 @@
 const { MessageEmbed, version } = require('discord.js');
 const { readdirSync } = require('fs');
+const schema = require('../../models/Prefix');
 
 module.exports = {
     name: 'help',
     aliases: ['help', 'h'],
     category: 'general',
+    cooldown: 0,
     description: {
         content: 'Display a list of commands the bot has available, or informations for commands.',
         usage: '[command: optional]'
     },
     args: { option: false },
-        exec(message, args) { 
+        async exec(message, args) { 
+            const data = await schema.findOne({guild: message.guild.id}, { prefix:1});
             if(!args[0]) {
                 const embed = new MessageEmbed()
                         .setColor('#ffd86e')
                         .setAuthor(message.client.user.username, message.client.user.displayAvatarURL())
-                        .setDescription(`You can use \`?help [command_name]\` for more detailed informations about a command.`)
+                        .setDescription(`You can use \`${data.prefix}help [command_name]\` for more detailed informations about a command.`)
                         .setImage('https://i.imgur.com/cBoiUvT.gif')
                         .setFooter(`djs-${version}`,message.client.user.displayAvatarURL())
                         .setTimestamp();    
