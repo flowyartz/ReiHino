@@ -9,10 +9,8 @@
   "author": "Tyer Lay",
   "license": "ISC",
   "dependencies": {
-    "@keyv/sqlite": "^2.0.1",
     "colors": "^1.4.0",
     "discord.js": "github:discordjs/discord.js",
-    "keyv": "^3.1.0",
     "mongoose": "^5.7.3"
   }
 }
