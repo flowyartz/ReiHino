@@ -8,4 +8,4 @@ client.once('ready', () => console.log(`Logged in as ${client.user.tag}`));
 require('./structures/loadCommand.js')('commands/', client);
 require('./structures/Database').connect();
 
-client.login(token);;
+client.login(token);
