@@ -1,4 +1,5 @@
 const fetch = require('node-fetch');
+const qs = require('querystring');
 
 module.exports = {
     name: 'docs',
@@ -13,28 +14,22 @@ module.exports = {
         prompt: 'please include the query you\'re trying to find!',
         option: true,
     },
-        exec(message, args) {
-            const query = args.join(' ');
-            fetch(`https://djsdocs.sorta.moe/v2/embed?src=master&q=${encodeURIComponent(query)}`)
-            .then(res => res.json())
-                .then(async embed => {
-                    if (embed && !embed.error) {
-                        const msg = await message.channel.send({embed})
-                        msg.react('🗑');
-                        const collector = msg.createReactionCollector((reaction, user) => reaction.emoji.name === '🗑' && user.id == message.author.id, { time: 10000 });
-                        collector.on('collect', res => {
-                            res.message.delete();
-                        });
-
-                        collector.on('end', res => {
-                            if (res.size <= 0) {
-                                msg.reactions.removeAll();
-                            }
-                        })
-                    }   else message.reply(`Cant find ${query}`);
-                }).catch (err => {
-                    console.error(err); 
-                    message.reply('Sorry, error expected..')
-                });
+        async exec(message, args) {
+            const queryString = qs.stringify({ src: 'master', q: args.join(' ') });
+            const res = await fetch(`https://djsdocs.sorta.moe/v2/embed?${queryString}`);
+            try {
+                const embed = await res.json();
+        
+                if (embed && !embed.error) {
+                    const msg = await message.channel.send({embed});
+                    msg.react('🗑');
+                        const collector = await msg.createReactionCollector((reaction, user) => reaction.emoji.name === '🗑' && user.id == message.author.id, { time: 10000});
+                        collector.on('collect', res => res.message.delete());
+                        collector.on('end', res => { if (res.size <= 0) msg.reactions.removeAll()});
+                } else message.reply(`sorry I can't find ${q}`);
+            } catch (e) {
+                console.error(e);
+                message.reply(`Sorry im having problems...`);
+            }
         }
 }
