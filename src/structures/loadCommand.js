@@ -12,7 +12,6 @@ module.exports = (commandPath, client)  => {
     });
 
     const listeners = readdirSync('../src/listeners/').filter(file => file.endsWith('js'));
-
     for (const files of listeners) {
         const events = require(`../listeners/${files}`);
         client.on(files.split('.')[0], events.bind(null, client));
