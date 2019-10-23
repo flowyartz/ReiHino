@@ -3,10 +3,11 @@ class CanvasUtils {
     static writeParagraph(ctx, message, font, x, y, maxWidth, fontSize, fontFace, {color = '#FFFFFF'} = {}) {
         ctx.font = font;
         ctx.fillStyle = color;
+
         const text = message.split(' ');
         let line = '';
         const lineHeight = fontSize + 2;
-
+        
         ctx.font = fontSize+ " " + fontFace;
 
         for (let n = 0; n < text.length; n++) {
@@ -17,14 +18,11 @@ class CanvasUtils {
                     ctx.fillText(line, x, y) 
                     line = text[n] + ' ';
                     y += lineHeight;
-                }   else {
-                    line = textLine;
-                    
-                }
+                }   else line = textLine;
         }
         ctx.fillText(line, x, y)
     }
-    
+
     static avatarCircle(ctx, avatarURL, dx, dy, dw, dh) {
         ctx.beginPath();
         ctx.fillStyle = '#FFFFFF';
