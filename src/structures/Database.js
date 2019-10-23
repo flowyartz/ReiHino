@@ -11,7 +11,7 @@ class Database {
             });
             console.log(`Sucessfully connected to Database`.green)
         } catch(e) {
-            console.error(`Unable to connecto to database: ${e}`)
+            console.error(`Unable to connect to database: ${e}`)
         }
     }
 }
