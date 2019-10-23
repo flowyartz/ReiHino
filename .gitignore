@@ -1,3 +1,5 @@
 src/config.json
+src/structures/CanvasProfile.js
+src/assets/
 node_modules/
 package-lock.json

@@ -5,7 +5,7 @@ const cooldown = new Collection();
 module.exports = async (client, message) => {
     if (message.channel.type === 'dm' || message.author.bot) return;
 
-    require('../structures/userXp')(message);
+    require('../structures/userData')(message);
     
     let args;
     let prefix;

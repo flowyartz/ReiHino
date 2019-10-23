@@ -1,4 +1,7 @@
 const schema = require('../../models/User');
+const Canvas = require('../../structures/CanvasProfile');
+const { MessageAttachment } = require('discord.js');
+const Xplvl = require('../../function/level');
 
 module.exports = {
     name: 'profile',
@@ -17,9 +20,11 @@ module.exports = {
             if (err) console.error(err);
             const msg = await message.channel.send(`Fetching profile infos...`)
             if (!data) {
-                msg.edit(`Profile info for ${user}\n- xp: 0\n- level: 0`)
+                msg.edit(`User doesn't exist in database. Creating user..`);
             } else {
-                msg.edit(`Profile info for ${user}\n- xp: ${data.xp}\n- level: ${data.level}`)
+                msg.edit(`Profile card for ${user}`);
+                const profile = await Canvas.profile(user, data.description, data.level, data.coins, data.xp, Xplvl);
+                message.channel.send(new MessageAttachment(profile, 'profile.png'));
             };
         });
     }
