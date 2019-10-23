@@ -1,18 +1,30 @@
 {
-  "name": "reihino",
-  "version": "1.0.0",
-  "description": "A practice bot written in JS with discord.js",
-  "main": "src/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Tyer Lay",
-  "license": "MIT",
-  "dependencies": {
-    "canvas": "^2.6.0",
-    "colors": "^1.4.0",
-    "discord.js": "github:discordjs/discord.js",
-    "mongoose": "^5.7.3",
-    "querystring": "^0.2.0"
-  }
+    "name": "reihino",
+    "version": "1.0.0",
+    "description": "A practice bot written in JS with discord.js",
+    "main": "src/index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/flowyartz/ReiHino.git"
+    },
+    "author": "Tyer Lay",
+    "license": "MIT",
+    "bugs": {
+      "url": "https://github.com/flowyartz/ReiHino/issues"
+    },
+    "homepage": "https://github.com/flowyartz/ReiHino#readme",
+    "dependencies": {
+      "canvas": "^2.6.0",
+      "colors": "^1.4.0",
+      "discord.js": "github:discordjs/discord.js",
+      "mongoose": "^5.7.3",
+      "querystring": "^0.2.0"
+    },
+    "devDependencies": {
+      "eslint": "^5.16.0",
+      "eslint-config-aqua": "^4.4.1"
+    }
 }
